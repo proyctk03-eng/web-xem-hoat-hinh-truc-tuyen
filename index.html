@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoạt Hình Trực Tuyến - Kênh Phim Hoạt Hình Thiếu Nhi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header cố định -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">AnimeKids</span>
+            </div>
+
+            <div class="search-sort-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm phim hoạt hình...">
+                <select id="sortSelect">
+                    <option value="newest">Mới cập nhật</option>
+                    <option value="most_viewed">Nhiều lượt xem nhất</option>
+                    <option value="rating">Đánh giá cao nhất</option>
+                </select>
+            </div>
+
+            <nav class="head-link">
+                <ul>
+                    <li><a href="#" class="active">Trang chủ</a></li>
+                    <li><a href="#">Thể loại</a></li>
+                    <li><a href="#">Phim bộ</a></li>
+                    <li><a href="#">Phim lẻ</a></li>
+                    <li><a href="#">Yêu thích</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Nội dung chính -->
+    <div class="content-wrapper">
+        <!-- Left Content: Danh sách video -->
+        <aside class="left-content">
+            <div class="list-header">
+                <h3>Danh sách phát</h3>
+                <span class="badge">4 Video</span>
+            </div>
+            <ul class="video-list">
+                <li class="video-item active" onclick="playVideo('yt', 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Big Buck Bunny - Chú Thỏ Thông Minh (HD 1080p)')">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=120&h=80&fit=crop" alt="Thumbnail">
+                    <div class="video-info">
+                        <h4>Big Buck Bunny - Chú Thỏ Thông Minh</h4>
+                        <span class="video-meta">1080p • Thuyết minh</span>
+                    </div>
+                </li>
+                <li class="video-item" onclick="playVideo('video', 'https://www.w3schools.com/html/mov_bbb.mp4', 'Cuộc Phiêu Lưu Của Chú Gấu Trúc (Full HD)')">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=120&h=80&fit=crop" alt="Thumbnail">
+                    <div class="video-info">
+                        <h4>Cuộc Phiêu Lưu Của Chú Gấu Trúc</h4>
+                        <span class="video-meta">720p • Thuyết minh</span>
+                    </div>
+                </li>
+                <li class="video-item" onclick="playVideo('yt', 'https://www.youtube.com/embed/L_LUpnjgPso', 'Thế Giới Động Vật Vui Nhộn')">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=120&h=80&fit=crop" alt="Thumbnail">
+                    <div class="video-info">
+                        <h4>Thế Giới Động Vật Vui Nhộn</h4>
+                        <span class="video-meta">1080p • Lồng tiếng</span>
+                    </div>
+                </li>
+                <li class="video-item" onclick="playVideo('video', 'https://www.w3schools.com/html/movie.mp4', 'Những Chú Gấu Bắc Cực Đáng Yêu')">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120&h=80&fit=crop" alt="Thumbnail">
+                    <div class="video-info">
+                        <h4>Những Chú Gấu Bắc Cực Đáng Yêu</h4>
+                        <span class="video-meta">720p • Thuyết minh</span>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Right Content: Trình phát video -->
+        <main class="right-content">
+            <div class="player-container">
+                <!-- YouTube Iframe player -->
+                <div id="iframePlayerWrapper" class="player-wrapper">
+                    <iframe id="youtubePlayer" 
+                            src="https://www.youtube.com/embed/L_LUpnjgPso" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- HTML5 Video tag player (ẩn mặc định, hiển thị khi chọn video nội bộ) -->
+                <div id="videoTagPlayerWrapper" class="player-wrapper" style="display: none;">
+                    <video id="html5VideoPlayer" controls width="100%">
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ thẻ video HTML5.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Thông tin chi tiết phim đang xem -->
+            <div class="video-details">
+                <div class="video-badge-group">
+                    <span class="tag tag-hd">Full HD 1080p</span>
+                    <span class="tag tag-lang">Thuyết Minh Tiếng Việt</span>
+                    <span class="tag tag-safe">100% An Toàn Cho Trẻ Em</span>
+                </div>
+                <h2 id="currentVideoTitle">Big Buck Bunny - Chú Thỏ Thông Minh (HD 1080p)</h2>
+                <div class="video-stats">
+                    <span>👁 1,245,680 lượt xem</span>
+                    <span>⭐ 4.9/5 (15.2k đánh giá)</span>
+                    <span>📅 Cập nhật: 2026</span>
+                </div>
+                <p class="video-desc">
+                    Bộ phim hoạt hình 3D vui nhộn dành cho thiếu nhi, truyền tải thông điệp nhân văn về tình bạn, lòng bao dung và sự hòa hợp với thiên nhiên. Chất lượng chuẩn nét cao, hoàn toàn không quảng cáo gây phiền toái.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 AnimeKids - Trang web xem phim hoạt hình trực tuyến cho trẻ em.</p>
+            <p>Nội dung chọn lọc hữu ích • Thuyết minh tiếng Việt • Hoàn toàn không quảng cáo.</p>
+        </div>
+    </footer>
+
+    <script>
+        function playVideo(type, src, title) {
+            const iframeWrapper = document.getElementById('iframePlayerWrapper');
+            const videoWrapper = document.getElementById('videoTagPlayerWrapper');
+            const youtubePlayer = document.getElementById('youtubePlayer');
+            const html5Player = document.getElementById('html5VideoPlayer');
+            const titleElem = document.getElementById('currentVideoTitle');
+
+            titleElem.textContent = title;
+
+            // Đổi active item
+            document.querySelectorAll('.video-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            if (type === 'yt') {
+                iframeWrapper.style.display = 'block';
+                videoWrapper.style.display = 'none';
+                html5Player.pause();
+                youtubePlayer.src = src;
+            } else {
+                iframeWrapper.style.display = 'none';
+                videoWrapper.style.display = 'block';
+                youtubePlayer.src = '';
+                html5Player.src = src;
+                html5Player.load();
+                html5Player.play();
+            }
+        }
+    </script>
+</body>
+</html>
